@@ -16,9 +16,7 @@ package com.ewerp.mud.plugins;
  * limitations under the License.
  */
 
-
 import java.util.List;
-
 
 /**
  * ejMud plugins must implement this interface to gain access to the
@@ -30,7 +28,6 @@ import java.util.List;
  *
  * @author cboyden
  */
-
 public interface IPlugin {
 
     /**

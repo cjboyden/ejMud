@@ -20,16 +20,16 @@ import com.ewerp.mud.EjMudException;
 
 /**
  * {@link ILifecycleProvider} is implemented by the main controller of the
- * ejMud.
+ * system.
  *
  * @author cboyden
  */
 public interface ILifecycleProvider {
 
     /**
-     * Register an {@link IPlugin} as a listener of the ejMud lifecycle state.
+     * Register an {@link IPlugin} as a listener of the system lifecycle state.
      *
-     * @param listener A listener for the ejMud lifecycle state <br />
+     * @param listener A listener for the system lifecycle state <br />
      *                 <ul>
      *                 <li>{@link ILifecycleListener} : A valid listener implementing
      *                 {@link ILifecycleListener}</li>
@@ -43,9 +43,9 @@ public interface ILifecycleProvider {
     public void registerListener(ILifecycleListener listener) throws IllegalArgumentException;
 
     /**
-     * Unregister an {@link IPlugin} as a listener of the ejMud lifecycle state.
+     * Unregister an {@link IPlugin} as a listener of the system lifecycle state.
      *
-     * @param listener An existing listener for the ejMud lifecycle state <br />
+     * @param listener An existing listener for the system lifecycle state <br />
      *                 <ul>
      *                 <li>{@link ILifecycleListener} : A valid listener implementing
      *                 {@link ILifecycleListener}</li>

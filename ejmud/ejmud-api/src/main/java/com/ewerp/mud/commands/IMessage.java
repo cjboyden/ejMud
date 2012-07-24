@@ -16,5 +16,10 @@ package com.ewerp.mud.commands;
  * limitations under the License.
  */
 
+/**
+ * A mechanism for describing an event, command result, observable interaction. etc...
+ * Each consumer of the {@link IMessage} is responsible for interpreting what the event
+ * means to it.
+ */
 public interface IMessage {
 }

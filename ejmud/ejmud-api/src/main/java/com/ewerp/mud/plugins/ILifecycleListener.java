@@ -25,20 +25,20 @@ package com.ewerp.mud.plugins;
 public interface ILifecycleListener {
 
     /**
-     * Called when ejMud is initializing, before any logic threads should
+     * Called when system is initializing, before any logic threads should
      * execute. ejMud objects should be readied for operation.
      */
     public void init();
 
     /**
-     * Called when the logic threads should begin. ejMud should become
+     * Called when the logic threads should begin. System should become
      * operational using this state notification.
      */
     public void start();
 
     /**
      * Called when listeners should begin their shutdown sequence. Stop all
-     * logic threads and save any world and engine state information.
+     * logic threads and save any content and engine state information.
      */
     public void stop();
 

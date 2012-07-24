@@ -16,8 +16,39 @@ package com.ewerp.mud.properties;
  * limitations under the License.
  */
 
+/**
+ * The {@link IProperties} provides a centralized repository of configuration information
+ */
 public interface IProperties {
+    /**
+     * Get a string property for a given key
+     * @param key name of the property to fetch
+     * @return String value of key, null if key not found
+     */
     public String getProperty(String key);
 
+    /**
+     * Get a string property for a given key
+     * @param key name of the property to fetch
+     * @param defaultValue value to return if the key cannot be found
+     * @return String value of key, defaultValue if key not found
+     */
     public String getProperty(String key, String defaultValue);
+
+    /**
+     * Get a string property for a given key in a given namespace
+     * @param namespace namespace corresponding to the key to fetch
+     * @param key name of the property to fetch
+     * @return String value of key, null if key not found
+     */
+    public String getNamespaceProperty(String namespace, String key);
+
+    /**
+     * Get a string property for a given key in a given namespace
+     * @param namespace namespace corresponding to the key to fetch
+     * @param key name of the property to fetch
+     * @param defaultValue value to return if the key cannot be found
+     * @return String value of key, defaultValue if key not found
+     */
+    public String getNamespaceProperty(String namespace, String key, String defaultValue);
 }

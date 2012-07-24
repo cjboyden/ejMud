@@ -16,9 +16,24 @@ package com.ewerp.mud.content;
  * limitations under the License.
  */
 
+/**
+ * The {@link IEntity} is the most basic representation of an object in the system
+ *
+ * @author cboyden
+ */
 public interface IEntity {
 
+    /**
+     * Get the id of the {@link IEntity} object
+     * @return id of the {@link IEntity} object
+     */
     public long getObjectId();
 
+    /**
+     * Set the id of the {@link IEntity} object
+     * @param id of the {@link IEntity} object
+     *
+     * //TODO: What happens if an id already exists? Is this a new object? Can this be a negative number or 0?
+     */
     public void setObjectId(long id);
 }

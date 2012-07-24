@@ -1,1 +1,15 @@
 ejMud
+
+
+Modules:
+ejmud-api - API
+ejmud-server - Game server / game specific objects & commands
+ejmud-command-engine
+ejmud-content-repository
+ejmud-logging
+ejmud-plugin-manager
+ejmud-properties
+ejmud-session-manager
+ejmud-session-telnet
+ejmud-session-html
+ejmud-session-cli
