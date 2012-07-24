@@ -10,6 +10,10 @@
 
     <packaging>pom</packaging>
 
+    <modules>
+        <module>ejmud-api</module>
+    </modules>
+
     <name>ejMud</name>
 
     <properties>
