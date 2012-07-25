@@ -23,6 +23,9 @@ public class MockPlugin implements IPlugin {
 
     @Override
     public void registerPluginManager(IPluginManager pluginManager) throws IllegalArgumentException {
+        if(null == pluginManager) {
+            throw new IllegalArgumentException();
+        }
         this.pluginManager = pluginManager;
     }
 

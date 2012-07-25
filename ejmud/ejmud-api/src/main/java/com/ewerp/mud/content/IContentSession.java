@@ -49,6 +49,7 @@ public interface IContentSession {
      * still be used and changes stored again in the future.
      * New {@link IEntity} are created and existing {@link IEntity} are updated.
      * @param object {@link IEntity} to create or update
+     * If object is null, nothing will happen
      */
     public void store(IEntity object);
 

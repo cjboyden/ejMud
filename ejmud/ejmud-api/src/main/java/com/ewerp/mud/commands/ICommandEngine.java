@@ -31,7 +31,7 @@ public interface ICommandEngine {
      *
      * @param command The commands to add to the execution queue <br />
      *                <ul>
-     *                <li>{@link ICommand} : A valid commands extending
+     *                <li>{@link ICommand} : A valid command extending
      *                {@link ICommand}</li>
      *                <li>null : A null value will result in an
      *                {@link IllegalArgumentException}</li>

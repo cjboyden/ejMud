@@ -49,11 +49,9 @@ public interface ISessionManager {
      *                <ul>
      *                <li>{@link ISession} : A valid session implementing
      *                {@link ISession}</li>
-     *                <li>null : A null value will result in an
-     *                {@link IllegalArgumentException}</li>
+     *                <li>null : A null value will do nothing</li>
      *                </ul>
-     * @throws IllegalArgumentException Must be thrown if {@link ISession} is null
      */
-    public void removeSession(ISession session) throws IllegalArgumentException;
+    public void removeSession(ISession session);
 }
 

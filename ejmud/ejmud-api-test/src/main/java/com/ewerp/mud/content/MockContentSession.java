@@ -52,6 +52,8 @@ public class MockContentSession implements IContentSession {
 
     @Override
     public void delete(IEntity object) {
-        entityList.remove(object);
+        if(entityList.contains(object)) {
+            entityList.remove(object);
+        }
     }
 }

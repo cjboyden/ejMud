@@ -26,11 +26,16 @@ public class MockLifecycleProvider implements ILifecycleProvider {
 
     @Override
     public void registerListener(ILifecycleListener listener) throws IllegalArgumentException {
+        if(null == listener) {
+            throw new IllegalArgumentException();
+        }
         lifecycleListenerList.add(listener);
     }
 
     @Override
-    public void unregisterListener(ILifecycleListener listener) throws IllegalArgumentException, EjMudException {
-        lifecycleListenerList.remove(listener);
+    public void unregisterListener(ILifecycleListener listener) throws EjMudException {
+        if(lifecycleListenerList.contains(listener)) {
+            lifecycleListenerList.remove(listener);
+        }
     }
 }

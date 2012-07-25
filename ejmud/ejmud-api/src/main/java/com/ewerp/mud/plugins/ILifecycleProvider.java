@@ -49,12 +49,10 @@ public interface ILifecycleProvider {
      *                 <ul>
      *                 <li>{@link ILifecycleListener} : A valid listener implementing
      *                 {@link ILifecycleListener}</li>
-     *                 <li>null : A null value will result in an
-     *                 {@link IllegalArgumentException}</li>
+     *                 <li>null : Nothing will happen if listener is null</li>
+     *                 <li>If the listener cannot be found, nothing will happen</li>
      *                 <ul>
      *                 <p/>
-     *                 throws IllegalArgumentException Must be thrown if
-     *                 {@link ILifecycleListener} is null
      */
-    public void unregisterListener(ILifecycleListener listener) throws IllegalArgumentException, EjMudException;
+    public void unregisterListener(ILifecycleListener listener) throws EjMudException;
 }

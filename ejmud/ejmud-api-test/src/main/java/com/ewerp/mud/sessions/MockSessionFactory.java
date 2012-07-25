@@ -21,6 +21,9 @@ public class MockSessionFactory implements ISessionFactory {
 
     @Override
     public void registerSessionManager(ISessionManager sessionManager) throws IllegalArgumentException {
+        if(null == sessionManager) {
+            throw new IllegalArgumentException();
+        }
         this.sessionManager = sessionManager;
     }
 }

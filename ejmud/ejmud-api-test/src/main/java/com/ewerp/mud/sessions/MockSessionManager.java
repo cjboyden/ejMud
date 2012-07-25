@@ -24,11 +24,14 @@ public class MockSessionManager implements ISessionManager {
 
     @Override
     public void addSession(ISession session) throws IllegalArgumentException {
+        if(null == session) {
+            throw new IllegalArgumentException();
+        }
         sessionList.add(session);
     }
 
     @Override
-    public void removeSession(ISession session) throws IllegalArgumentException {
+    public void removeSession(ISession session) {
         sessionList.remove(session);
     }
 }

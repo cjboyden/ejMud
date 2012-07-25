@@ -27,6 +27,10 @@ public class MockPluginManager implements IPluginManager {
 
     @Override
     public IPlugin getPlugin(String namespace, Class<?> clazz) throws IllegalArgumentException {
+        if(null == clazz) {
+            throw new IllegalArgumentException();
+        }
+
         IPlugin plugin = null;
         List<IPlugin> pluginList = pluginMap.get(namespace);
         if(null != pluginList) {
@@ -47,6 +51,10 @@ public class MockPluginManager implements IPluginManager {
 
     @Override
     public void addPlugin(String namespace, IPlugin plugin) throws IllegalArgumentException {
+        if(null == plugin) {
+            throw new IllegalArgumentException();
+        }
+
         List<IPlugin> pluginList = pluginMap.get(namespace);
         if(null == pluginList) {
             pluginList = new ArrayList<IPlugin>();

@@ -26,6 +26,9 @@ public class MockCommandEngine implements ICommandEngine {
 
     @Override
     public void pushCommand(ICommand command) throws IllegalArgumentException, EjMudException {
+        if(null == command) {
+            throw new IllegalArgumentException();
+        }
         commandList.add(command);
     }
 }

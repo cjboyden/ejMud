@@ -29,6 +29,9 @@ public class MockCommand implements ICommand {
 
     @Override
     public void setPluginManager(IPluginManager pluginManager) throws IllegalArgumentException {
+        if(null == pluginManager) {
+            throw new IllegalArgumentException();
+        }
         this.pluginManager = pluginManager;
     }
 }
