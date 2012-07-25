@@ -33,7 +33,7 @@ public class MockLifecycleProvider implements ILifecycleProvider {
     }
 
     @Override
-    public void unregisterListener(ILifecycleListener listener) throws EjMudException {
+    public void unregisterListener(ILifecycleListener listener) {
         if(lifecycleListenerList.contains(listener)) {
             lifecycleListenerList.remove(listener);
         }

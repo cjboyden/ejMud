@@ -16,8 +16,6 @@ package com.ewerp.mud.plugins;
  * limitations under the License.
  */
 
-import com.ewerp.mud.EjMudException;
-
 /**
  * {@link ILifecycleProvider} is implemented by the main controller of the
  * system.
@@ -39,6 +37,8 @@ public interface ILifecycleProvider {
      *                 <p/>
      *                 throws IllegalArgumentException Must be thrown if
      *                 {@link ILifecycleListener} is null
+     *
+     * @throws IllegalArgumentException Must be thrown if {@link ILifecycleListener} is null
      */
     public void registerListener(ILifecycleListener listener) throws IllegalArgumentException;
 
@@ -54,5 +54,5 @@ public interface ILifecycleProvider {
      *                 <ul>
      *                 <p/>
      */
-    public void unregisterListener(ILifecycleListener listener) throws EjMudException;
+    public void unregisterListener(ILifecycleListener listener);
 }
