@@ -29,9 +29,9 @@ public interface ICommandEngine {
     /**
      * Push an {@link ICommand} onto a queue for execution
      *
-     * @param command The command to add to the execution queue <br />
+     * @param command The commands to add to the execution queue <br />
      *                <ul>
-     *                <li>{@link ICommand} : A valid command extending
+     *                <li>{@link ICommand} : A valid commands extending
      *                {@link ICommand}</li>
      *                <li>null : A null value will result in an
      *                {@link IllegalArgumentException}</li>

@@ -19,7 +19,7 @@ package com.ewerp.mud.commands;
 import java.util.List;
 
 /**
- * A mechanism for describing an event, command result, observable interaction. etc...
+ * A mechanism for describing an event, commands result, observable interaction. etc...
  * Each consumer of the {@link IMessage} is responsible for interpreting what the event
  * means to it.
  *

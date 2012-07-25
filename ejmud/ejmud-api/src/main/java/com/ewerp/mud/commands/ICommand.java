@@ -28,7 +28,7 @@ import com.ewerp.mud.plugins.IPluginManager;
 public interface ICommand {
 
     /**
-     * Invoke the command logic. Typically operating on the target
+     * Invoke the commands logic. Typically operating on the target
      * {@link IEntity} using the source {@link IEntity}.
      *
      * @throws IllegalStateException Must be thrown if the configuration of the {@link ICommand}
@@ -37,10 +37,10 @@ public interface ICommand {
     public void execute() throws IllegalStateException;
 
     /**
-     * Set the {@link IPluginManager} for the command to use to access
+     * Set the {@link IPluginManager} for the commands to use to access
      * resources.
      *
-     * @param pluginManager The {@link IPluginManager} the command will use to gain access
+     * @param pluginManager The {@link IPluginManager} the commands will use to gain access
      *                      to required resources. <br />
      *                      <ul>
      *                      <li>{@link IPluginManager} : A valid {@link IPluginManager}</li>

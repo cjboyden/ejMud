@@ -12,6 +12,7 @@
 
     <modules>
         <module>ejmud-api</module>
+        <module>ejmud-api-test</module>
     </modules>
 
     <name>ejMud</name>
