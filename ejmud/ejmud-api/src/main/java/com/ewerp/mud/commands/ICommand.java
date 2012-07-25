@@ -44,10 +44,8 @@ public interface ICommand {
      *                      to required resources. <br />
      *                      <ul>
      *                      <li>{@link IPluginManager} : A valid {@link IPluginManager}</li>
-     *                      <li>null : Must not be null. An
-     *                      {@link IllegalArgumentException} will be thrown</li>
+     *                      <li>null : Remove current {@link IPluginManager}</li>
      *                      <ul>
-     * @throws IllegalArgumentException Must be thrown if the pluginManager is null.
      */
-    public void setPluginManager(IPluginManager pluginManager) throws IllegalArgumentException;
+    public void setPluginManager(IPluginManager pluginManager);
 }
