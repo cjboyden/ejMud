@@ -51,6 +51,8 @@ public interface IPlugin {
      * @return The list of interfaces implemented by this class. This may be
      *         null if the {@link IPlugin} does not expose any functionality to
      *         the other ejMud {@link IPlugin}s.
+     *
+     * //TODO: Should this be allowed to return null, or should it be an empty list?
      */
     public List<Class<?>> getInterfaces();
 }

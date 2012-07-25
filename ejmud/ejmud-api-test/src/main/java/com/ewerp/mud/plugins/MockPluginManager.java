@@ -35,7 +35,7 @@ public class MockPluginManager implements IPluginManager {
         List<IPlugin> pluginList = pluginMap.get(namespace);
         if(null != pluginList) {
             for(IPlugin p : pluginList) {
-                if(p.getInterfaces().contains(clazz)) {
+                if((null != p.getInterfaces()) && (p.getInterfaces().contains(clazz))) {
                     plugin = p;
                     break;
                 }
