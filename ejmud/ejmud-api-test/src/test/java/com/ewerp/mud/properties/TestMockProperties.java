@@ -1,5 +1,6 @@
 package com.ewerp.mud.properties;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -26,5 +27,19 @@ public class TestMockProperties {
     public void testMockProperties() {
         IProperties properties = generateProperties();
 
+        Assert.assertNull("A property that does not exist must return null", properties.getProperty("nonexistentkey"));
+        Assert.assertNull("A null property should return null", properties.getProperty(null));
+        Assert.assertEquals("Default value must be returned if the property does not exist", "default", properties.getProperty("nonexistentkey", "default"));
+        Assert.assertEquals("Default value must be returned if the property does not exist", null, properties.getProperty("nonexistentkey", null));
+
+        Assert.assertNull("A property that does not exist must return null", properties.getNamespaceProperty(null, "nonexistentkey"));
+        Assert.assertNull("A null property should return null", properties.getNamespaceProperty(null, null));
+        Assert.assertEquals("Default value must be returned if the property does not exist", "default", properties.getNamespaceProperty(null, "nonexistentkey", "default"));
+        Assert.assertEquals("Default value must be returned if the property does not exist", null, properties.getNamespaceProperty(null, "nonexistentkey", null));
+
+        Assert.assertNull("A property that does not exist must return null", properties.getNamespaceProperty("nonexistentnamespace", "nonexistentkey"));
+        Assert.assertNull("A null property should return null", properties.getNamespaceProperty("nonexistentnamespace", null));
+        Assert.assertEquals("Default value must be returned if the property does not exist", "default", properties.getNamespaceProperty("nonexistentnamespace", "nonexistentkey", "default"));
+        Assert.assertEquals("Default value must be returned if the property does not exist", null, properties.getNamespaceProperty("nonexistentnamespace", "nonexistentkey", null));
     }
 }
