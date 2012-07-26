@@ -1,5 +1,6 @@
 package com.ewerp.mud.commands;
 
+import com.ewerp.mud.plugins.MockPluginManager;
 import org.junit.Test;
 import org.junit.Assert;
 
@@ -30,6 +31,11 @@ public class TestMockCommandEngine {
         ICommandEngine commandEngine = generateCommandEngine();
         MockCommand command = new MockCommand();
         Assert.assertEquals("MockCommand is not properly initialized",0, command.executionCount);
+
+        MockPluginManager pluginManager = new MockPluginManager();
+
+        commandEngine.setPluginManager(null);
+        commandEngine.setPluginManager(pluginManager);
 
         commandEngine.pushCommand(command);
     }

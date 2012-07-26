@@ -17,6 +17,7 @@ package com.ewerp.mud.commands;
  */
 
 import com.ewerp.mud.EjMudException;
+import com.ewerp.mud.plugins.IPluginManager;
 
 /**
  * The {@link ICommandEngine} executes {@link ICommand} from a {@link ICommand}
@@ -41,4 +42,17 @@ public interface ICommandEngine {
      *                                  the queue
      */
     public void pushCommand(ICommand command) throws IllegalArgumentException, EjMudException;
+
+    /**
+     * Set the {@link com.ewerp.mud.plugins.IPluginManager} for the commands to use to access
+     * resources.
+     *
+     * @param pluginManager The {@link com.ewerp.mud.plugins.IPluginManager} the commands will use to gain access
+     *                      to required resources. <br />
+     *                      <ul>
+     *                      <li>{@link com.ewerp.mud.plugins.IPluginManager} : A valid {@link com.ewerp.mud.plugins.IPluginManager}</li>
+     *                      <li>null : Remove current {@link com.ewerp.mud.plugins.IPluginManager}</li>
+     *                      <ul>
+     */
+    public void setPluginManager(IPluginManager pluginManager);
 }

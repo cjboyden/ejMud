@@ -1,6 +1,7 @@
 package com.ewerp.mud.commands;
 
 import com.ewerp.mud.EjMudException;
+import com.ewerp.mud.plugins.IPluginManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,7 @@ import java.util.List;
 
 public class MockCommandEngine implements ICommandEngine {
     public List<ICommand> commandList = new ArrayList<ICommand>();
+    public IPluginManager pluginManager;
 
     @Override
     public void pushCommand(ICommand command) throws IllegalArgumentException, EjMudException {
@@ -30,5 +32,10 @@ public class MockCommandEngine implements ICommandEngine {
             throw new IllegalArgumentException();
         }
         commandList.add(command);
+    }
+
+    @Override
+    public void setPluginManager(IPluginManager pluginManager) {
+        this.pluginManager = pluginManager;
     }
 }
