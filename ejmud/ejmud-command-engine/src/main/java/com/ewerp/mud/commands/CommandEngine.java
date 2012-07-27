@@ -28,6 +28,14 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+/**
+ * A simple, thread-safe implementation of the {@link ICommandEngine}.
+ * Pass an {@link ICommand} object into the engine via {@link public void CommandEngine.pushCommand(ICommand)}
+ * for processing.
+ * If the {@link CommandEngine} has an {@link IPluginManager} it will associate that {@link IPluginManager}
+ * with the {@link ICommand} if the {@link ICommand} is an instance of {@link IPlugin}.
+ */
 public class CommandEngine implements IPlugin, ICommandEngine, ILifecycleListener, Runnable {
     private IPluginManager pluginManager;
 
@@ -133,16 +141,20 @@ public class CommandEngine implements IPlugin, ICommandEngine, ILifecycleListene
         }
     }
 
-    // Null does nothing
-    // If executionListener is already listening, do NOT add it again
+    /**
+     * Add an {@link IExecutionListener} to the chain of observers
+     * @param executionListener If the executionListener is null or already exists in the list, nothing happens
+     */
     public void addExecutionListener(IExecutionListener executionListener) {
         if(null != executionListener && !executionListeners.contains(executionListener)) {
             executionListeners.add(executionListener);
         }
     }
 
-    // Null does nothing
-    // Do nothing if the executionListener cannot be found to be removed
+    /**
+     * Remove an existing {@link IExecutionListener} from the chain of observers
+     * @param executionListener If the executionListener is null or does not exist in the list, nothing happens
+     */
     public void removeExecutionListener(IExecutionListener executionListener) {
         if(null != executionListener) {
             executionListeners.remove(executionListener);
