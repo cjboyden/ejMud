@@ -10,7 +10,7 @@
         <version>0.1</version>
     </parent>
 
-    <artifactId>ejmud-command-engine</artifactId>
+    <artifactId>ejmud-plugin-manager</artifactId>
 
 
     <dependencies>

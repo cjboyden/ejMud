@@ -31,6 +31,8 @@ public interface IPluginManager {
      * namespace. The {@link IPlugin} provides functionality to the other
      * {@link IPlugin}s.
      *
+     * The first plugin to support a given interface that was added is the one that will be returned.
+     *
      * @param namespace May be specified to prevent collision <br />
      *                  <ul>
      *                  <li>String : Any valid string can be used to represent a
@@ -57,6 +59,8 @@ public interface IPluginManager {
      * default namespace. The {@link IPlugin} provides functionality to the
      * other {@link IPlugin}s.
      *
+     * The first plugin to support a given interface that was added is the one that will be returned.
+     *
      * @param clazz The interface implemented by the {@link IPlugin} that is being
      *              requested <br />
      *              <ul>
@@ -75,6 +79,7 @@ public interface IPluginManager {
     /**
      * Register an {@link IPlugin} associated with a given namespace. The
      * {@link IPlugin} provides functionality to the other {@link IPlugin}s.
+     * This method will register this {@link IPluginManager} as the plugin manager for the incoming {@link IPlugin}
      *
      * @param namespace May be specified to prevent collision <br />
      *                  <ul>
@@ -86,6 +91,7 @@ public interface IPluginManager {
      *                  the ejMud <br />
      *                  <ul>
      *                  <li>{@link IPlugin} : A valid plugin extending {@link IPlugin}
+     *                  <li>If the {@link IPlugin} has already been added, nothing will happen</li>
      *                  </li>
      *                  <li>null : A null value will result in an
      *                  {@link IllegalArgumentException}</li>
@@ -97,12 +103,14 @@ public interface IPluginManager {
     /**
      * Register an {@link IPlugin} associated with a given namespace. The
      * {@link IPlugin} provides functionality to the other {@link IPlugin}s.
+     * This method will register this {@link IPluginManager} as the plugin manager for the incoming {@link IPlugin}
      *
      * @param plugin An instance of {@link IPlugin} that provides functionality to
      *               the ejMud <br />
      *               <ul>
      *               <li>{@link IPlugin} : A valid plugin extending {@link IPlugin}
      *               </li>
+     *               <li>If the {@link IPlugin} has already been added, nothing will happen</li>
      *               <li>null : A null value will result in an
      *               {@link IllegalArgumentException}</li>
      *               </ul>
