@@ -33,9 +33,4 @@ public class MockCommandEngine implements ICommandEngine {
         }
         commandList.add(command);
     }
-
-    @Override
-    public void setPluginManager(IPluginManager pluginManager) {
-        this.pluginManager = pluginManager;
-    }
 }

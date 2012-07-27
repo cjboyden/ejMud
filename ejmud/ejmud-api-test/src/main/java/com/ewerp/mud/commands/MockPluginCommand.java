@@ -1,8 +1,10 @@
 package com.ewerp.mud.commands;
 
-import com.ewerp.mud.plugins.MockPluginManager;
-import org.junit.Test;
-import org.junit.Assert;
+import com.ewerp.mud.plugins.IPlugin;
+import com.ewerp.mud.plugins.IPluginManager;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Copyright 2012 Curtis Boyden
@@ -19,19 +21,16 @@ import org.junit.Assert;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+public class MockPluginCommand extends MockCommand implements IPlugin {
+    public IPluginManager pluginManager;
 
-public class TestMockCommandEngine {
-
-    public static ICommandEngine generateCommandEngine() {
-        return new MockCommandEngine();
+    @Override
+    public void registerPluginManager(IPluginManager pluginManager) {
+        this.pluginManager = pluginManager;
     }
 
-    @Test
-    public void testCommandEngine() throws Exception {
-        ICommandEngine commandEngine = generateCommandEngine();
-        MockCommand command = new MockCommand();
-        Assert.assertEquals("MockCommand is not properly initialized",0, command.executionCount);
-
-        commandEngine.pushCommand(command);
+    @Override
+    public List<Class<?>> getInterfaces() {
+        return Arrays.asList(new Class<?>[]{ICommand.class});
     }
 }

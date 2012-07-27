@@ -35,17 +35,4 @@ public interface ICommand {
      *                               is invalid
      */
     public void execute() throws IllegalStateException;
-
-    /**
-     * Set the {@link IPluginManager} for the commands to use to access
-     * resources.
-     *
-     * @param pluginManager The {@link IPluginManager} the commands will use to gain access
-     *                      to required resources. <br />
-     *                      <ul>
-     *                      <li>{@link IPluginManager} : A valid {@link IPluginManager}</li>
-     *                      <li>null : Remove current {@link IPluginManager}</li>
-     *                      <ul>
-     */
-    public void setPluginManager(IPluginManager pluginManager);
 }

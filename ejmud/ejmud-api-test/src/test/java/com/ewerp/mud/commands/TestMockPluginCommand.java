@@ -16,31 +16,45 @@ package com.ewerp.mud.commands;
  * limitations under the License.
  */
 
+import com.ewerp.mud.plugins.IPlugin;
 import com.ewerp.mud.plugins.IPluginManager;
 import com.ewerp.mud.plugins.MockPluginManager;
 import junit.framework.Assert;
 import org.junit.Test;
 
-public class TestMockCommand {
+import java.util.List;
+
+public class TestMockPluginCommand {
 
     private static ICommand generateCommand() {
-        return new MockCommand();
+        return new MockPluginCommand();
     }
 
     @Test
-    public void testExecuteWithGoodPluginManager() {
+    public void testVerifyPluginClass() {
         ICommand command = generateCommand();
-        IPluginManager pluginManager = new MockPluginManager();
 
-        command.setPluginManager(pluginManager);
+        List<Class<?>> classList = ((IPlugin)command).getInterfaces();
+
+        Assert.assertNotNull(classList);
+        Assert.assertEquals(1, classList.size());
+        Assert.assertTrue(classList.contains(ICommand.class));
+    }
+
+    @Test
+    public void testExecuteGoodPluginManager() {
+        ICommand command = generateCommand();
+
+        MockPluginManager pluginManager = new MockPluginManager();
+        ((IPlugin)command).registerPluginManager(pluginManager);
         command.execute();
     }
 
     @Test
-    public void testExecuteWithNullPluginManager() {
+    public void testExecuteNullPluginManager() {
         ICommand command = generateCommand();
 
-        command.setPluginManager(null);
+        ((IPlugin)command).registerPluginManager(null);
         command.execute();
     }
 }

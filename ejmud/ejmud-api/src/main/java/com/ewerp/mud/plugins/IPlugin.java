@@ -38,12 +38,10 @@ public interface IPlugin {
      *                      <ul>
      *                      <li>{@link IPluginManager} : A valid plugin manager
      *                      implementing {@link IPluginManager}</li>
-     *                      <li>null : A null value will result in an
-     *                      {@link IllegalArgumentException}</li>
+     *                      <li>null : A null value will clear the current plugin manager</li>
      *                      </ul>
-     * @throws IllegalArgumentException Must be thrown if {@link IPluginManager} is null
      */
-    public void registerPluginManager(IPluginManager pluginManager) throws IllegalArgumentException;
+    public void registerPluginManager(IPluginManager pluginManager);
 
     /**
      * The list of interfaces implemented by this class.

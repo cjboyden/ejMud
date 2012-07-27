@@ -20,15 +20,9 @@ import com.ewerp.mud.plugins.IPluginManager;
 
 public class MockCommand implements ICommand {
     public int executionCount = 0;
-    public IPluginManager pluginManager;
 
     @Override
     public void execute() throws IllegalStateException {
         executionCount++;
-    }
-
-    @Override
-    public void setPluginManager(IPluginManager pluginManager) {
-        this.pluginManager = pluginManager;
     }
 }

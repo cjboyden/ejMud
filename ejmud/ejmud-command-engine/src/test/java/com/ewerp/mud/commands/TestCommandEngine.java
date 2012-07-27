@@ -1,6 +1,7 @@
 package com.ewerp.mud.commands;
 
 import com.ewerp.mud.plugins.ILifecycleListener;
+import com.ewerp.mud.plugins.IPlugin;
 import com.ewerp.mud.plugins.MockPluginManager;
 import junit.framework.Assert;
 import org.junit.Test;
@@ -33,15 +34,15 @@ public class TestCommandEngine {
 
         final MockPluginManager pluginManager = new MockPluginManager();
 
-        commandEngine.setPluginManager(pluginManager);
+        ((IPlugin)commandEngine).registerPluginManager(pluginManager);
 
-        MockCommand command1 = new MockCommand();
-        MockCommand command2 = new MockCommand();
+        MockPluginCommand command1 = new MockPluginCommand();
+        MockPluginCommand command2 = new MockPluginCommand();
 
         AbstractMockExecutionListener executionListener = new AbstractMockExecutionListener() {
             @Override
             public boolean customBeforeExecute(ICommand command) {
-                MockCommand mc = (MockCommand)command;
+                MockPluginCommand mc = (MockPluginCommand)command;
                 Assert.assertEquals(pluginManager, mc.pluginManager);
                 Assert.assertEquals(0, mc.executionCount);
                 return true;
@@ -49,7 +50,7 @@ public class TestCommandEngine {
 
             @Override
             public void customAfterExecute(ICommand command) {
-                MockCommand mc = (MockCommand)command;
+                MockPluginCommand mc = (MockPluginCommand)command;
                 Assert.assertEquals(pluginManager, mc.pluginManager);
                 Assert.assertEquals(1, mc.executionCount);
             }
@@ -82,15 +83,15 @@ public class TestCommandEngine {
 
         final MockPluginManager pluginManager = new MockPluginManager();
 
-        commandEngine.setPluginManager(pluginManager);
+        ((IPlugin)commandEngine).registerPluginManager(pluginManager);
 
-        MockCommand command1 = new MockCommand();
-        MockCommand command2 = new MockCommand();
+        MockPluginCommand command1 = new MockPluginCommand();
+        MockPluginCommand command2 = new MockPluginCommand();
 
         AbstractMockExecutionListener executionListener =  new AbstractMockExecutionListener() {
             @Override
             public boolean customBeforeExecute(ICommand command) {
-                MockCommand mc = (MockCommand) command;
+                MockPluginCommand mc = (MockPluginCommand) command;
                 Assert.assertEquals(pluginManager, mc.pluginManager);
                 Assert.assertEquals(0, mc.executionCount);
                 return false;
@@ -116,15 +117,9 @@ public class TestCommandEngine {
         Assert.assertEquals(0, executionListener.afterExecuteCount);
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testCommandEngineSetPluginManagerNull() {
         ICommandEngine commandEngine = generateCommandEngine();
-
-        commandEngine.setPluginManager(null);
-
-        MockPluginManager pluginManager = new MockPluginManager();
-
-        commandEngine.setPluginManager(pluginManager);
-        commandEngine.setPluginManager(null);
+        ((IPlugin)commandEngine).registerPluginManager(null);
     }
 }
