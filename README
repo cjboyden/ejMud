@@ -8,7 +8,7 @@ ejmud-command-engine
 ejmud-content-repository
 ejmud-logging
 ejmud-plugin-manager
-ejmud-properties
+ejmud-configuration
 ejmud-session-manager
 ejmud-session-telnet
 ejmud-session-html

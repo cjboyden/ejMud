@@ -14,6 +14,7 @@
         <module>ejmud-api</module>
         <module>ejmud-api-test</module>
         <module>ejmud-logging</module>
+        <module>ejmud-configuration</module>
         <module>ejmud-plugin-manager</module>
         <module>ejmud-command-engine</module>
     </modules>
