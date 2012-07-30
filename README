@@ -9,7 +9,4 @@ ejmud-content-repository
 ejmud-logging
 ejmud-plugin-manager
 ejmud-configuration
-ejmud-session-manager
-ejmud-session-telnet
-ejmud-session-html
-ejmud-session-cli
+ejmud-session-manager - Contains basic session implementations: telnet, html, cli, etc...

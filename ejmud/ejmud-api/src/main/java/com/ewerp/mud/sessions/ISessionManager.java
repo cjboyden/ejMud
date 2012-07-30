@@ -17,9 +17,16 @@ package com.ewerp.mud.sessions;
  */
 
 /**
- * An {@link ISessionManager} manages the {@link ISession}s for the ejMud. An
+ * The {@link ISessionManager} manages all {@link ISession}s for the ejMud. An
  * {@link ISession} is a single entry point into the ejMud for a given message
  * format over a given transport.
+ *
+ * The {@link ISessionManager} starts and stops all contained {@link ISessionFactory}s.
+ * Each {@link ISessionFactory} is responsible for creating sessions and attaching them to the {@link ISessionManager}.
+ * The {@link ISessionManager} will notify each contained {@link ISession} of {@link com.ewerp.mud.commands.IMessage}s
+ * that need to be processed.
+ *
+ * This is the main interface that the other plugins should communicate with.
  *
  * @author cboyden
  */
@@ -33,6 +40,7 @@ public interface ISessionManager {
      *                <ul>
      *                <li>{@link ISession} : A valid session implementing
      *                {@link ISession}</li>
+     *                <li>If {@link ISession} already exists, nothing will happen</li>
      *                <li>null : A null value will result in an
      *                {@link IllegalArgumentException}</li>
      *                </ul>
@@ -49,9 +57,36 @@ public interface ISessionManager {
      *                <ul>
      *                <li>{@link ISession} : A valid session implementing
      *                {@link ISession}</li>
+     *                <li>If {@link ISession} does not exist in this {@link ISessionManager}, nothing happens</li>
      *                <li>null : A null value will do nothing</li>
      *                </ul>
      */
     public void removeSession(ISession session);
+
+    /**
+     * Add an {@link ISessionFactory} to this {@link ISessionManager}
+     * @param sessionFactory An {@link ISessionFactory} to be managed by this {@link ISessionManager}
+     *                <ul>
+     *                <li>{@link ISessionFactory} : A valid session implementing
+     *                {@link ISessionFactory}</li>
+     *                <li>If {@link ISessionFactory} already exists, nothing will happen</li>
+     *                <li>null : A null value will result in an
+     *                {@link IllegalArgumentException}</li>
+     *                </ul>
+     * @throws IllegalArgumentException Must be thrown if {@link ISession} is null
+     */
+    public void addSessionFactory(ISessionFactory sessionFactory) throws IllegalArgumentException;
+
+    /**
+     * Remove and {@link ISessionFactory} from being managed by this {@link ISessionManager}
+     * @param sessionFactory An {@link ISessionFactory} to be removed from this {@link ISessionManager}
+     *                <ul>
+     *                <li>{@link ISessionFactory} : A valid session implementing
+     *                {@link ISessionFactory}</li>
+     *                <li>If {@link ISessionFactory} does not exist in this {@link ISessionManager}, nothing happens</li>
+     *                <li>null : A null value will do nothing</li>
+     *                </ul>
+     */
+    public void removeSessionFactory(ISessionFactory sessionFactory);
 }
 

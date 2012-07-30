@@ -21,6 +21,7 @@ import java.util.List;
 
 public class MockSessionManager implements ISessionManager {
     public List<ISession> sessionList = new ArrayList<ISession>();
+    public List<ISessionFactory> sessionFactoryList = new ArrayList<ISessionFactory>();
 
     @Override
     public void addSession(ISession session) throws IllegalArgumentException {
@@ -33,5 +34,18 @@ public class MockSessionManager implements ISessionManager {
     @Override
     public void removeSession(ISession session) {
         sessionList.remove(session);
+    }
+
+    @Override
+    public void addSessionFactory(ISessionFactory sessionFactory) throws IllegalArgumentException {
+        if(null == sessionFactory) {
+            throw new IllegalArgumentException();
+        }
+        sessionFactoryList.add(sessionFactory);
+    }
+
+    @Override
+    public void removeSessionFactory(ISessionFactory sessionFactory) {
+        sessionFactoryList.remove(sessionFactory);
     }
 }
