@@ -21,12 +21,6 @@
 
         <dependency>
             <groupId>com.ewerp.mud</groupId>
-            <artifactId>ejmud-logging</artifactId>
-            <version>0.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.ewerp.mud</groupId>
             <artifactId>ejmud-api-test</artifactId>
             <version>0.1</version>
             <scope>test</scope>
