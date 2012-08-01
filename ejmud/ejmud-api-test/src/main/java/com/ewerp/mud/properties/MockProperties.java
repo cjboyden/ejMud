@@ -1,5 +1,8 @@
 package com.ewerp.mud.properties;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Copyright 2012 Curtis Boyden
  * <p/>
@@ -17,23 +20,43 @@ package com.ewerp.mud.properties;
  */
 
 public class MockProperties implements IProperties {
+    public Map<String, Map<String, String>> namespaces = new HashMap<String, Map<String, String>>();
+    public static String DEFAULT_NAMESPACE = "EWERP_DEFAULT";
+
     @Override
     public String getProperty(String key) {
-        return null;
+        return getNamespaceProperty(null, key);
     }
 
     @Override
     public String getProperty(String key, String defaultValue) {
-        return defaultValue;
+        return getNamespaceProperty(null, key, defaultValue);
     }
 
     @Override
     public String getNamespaceProperty(String namespace, String key) {
-        return null;
+        String result = null;
+
+        String useNamespace = namespace;
+        if(null == useNamespace) {
+            useNamespace = MockProperties.DEFAULT_NAMESPACE;
+        }
+
+        if(namespaces.containsKey(useNamespace)) {
+            result = namespaces.get(useNamespace).get(key);
+        }
+
+        return result;
     }
 
     @Override
     public String getNamespaceProperty(String namespace, String key, String defaultValue) {
-        return defaultValue;
+        String result = getNamespaceProperty(namespace, key);
+
+        if(null == result) {
+            result = defaultValue;
+        }
+
+        return result;
     }
 }

@@ -64,6 +64,9 @@ public interface ISessionManager {
     public void removeSession(ISession session);
 
     /**
+     * @Deprecated Implementation should handle ISessionFactory injection themselves if desired
+     *             One way to do this is to query the IPluginManager for all instances of ISessionFactory
+     *
      * Add an {@link ISessionFactory} to this {@link ISessionManager}
      * @param sessionFactory An {@link ISessionFactory} to be managed by this {@link ISessionManager}
      *                <ul>
@@ -75,9 +78,12 @@ public interface ISessionManager {
      *                </ul>
      * @throws IllegalArgumentException Must be thrown if {@link ISession} is null
      */
+    @Deprecated
     public void addSessionFactory(ISessionFactory sessionFactory) throws IllegalArgumentException;
 
     /**
+     * @Deprecated Implementation should handle ISessionFactory injection themselves if desired
+     *             One way to do this is to query the IPluginManager for all instances of ISessionFactory
      * Remove and {@link ISessionFactory} from being managed by this {@link ISessionManager}
      * @param sessionFactory An {@link ISessionFactory} to be removed from this {@link ISessionManager}
      *                <ul>
@@ -87,6 +93,7 @@ public interface ISessionManager {
      *                <li>null : A null value will do nothing</li>
      *                </ul>
      */
+    @Deprecated
     public void removeSessionFactory(ISessionFactory sessionFactory);
 }
 

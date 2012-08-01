@@ -75,6 +75,8 @@ public class SessionManager implements ISessionManager, ILifecycleListener, IPlu
      */
     @Override
     public void init() {
+        // TODO: Populate sessionFactoryList from IPluginManager -- Get all instance of ISessionFactory that are registered
+
         for (ISessionFactory sessionFactory : sessionFactoryList) {
             sessionFactory.registerSessionManager(this);
             if (sessionFactory instanceof ILifecycleListener) {

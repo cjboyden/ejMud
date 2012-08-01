@@ -90,4 +90,14 @@ public class TestSessionManager {
 
         sessionManager.addSessionFactory(null);
     }
+
+    @Test
+    public void testSupportedPluginInterfaces() {
+        ISessionManager sessionManager = generateSessionManager();
+        IPlugin plugin = (IPlugin)sessionManager;
+
+        Assert.assertNotNull(plugin.getInterfaces());
+        Assert.assertEquals(1, plugin.getInterfaces().size());
+        Assert.assertEquals(ISessionFactory.class, plugin.getInterfaces().get(0));
+    }
 }
