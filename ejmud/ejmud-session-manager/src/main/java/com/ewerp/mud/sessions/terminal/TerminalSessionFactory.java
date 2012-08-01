@@ -124,6 +124,7 @@ public class TerminalSessionFactory implements ISessionFactory, IPlugin, ILifecy
                 while (!shutdown.get()) {
                     try {
                         client = serverSocket.accept();
+                        // TODO: Add a hook here that returns true if client should be accepted
                         sessionManager.addSession(new TerminalSession(client));
                     } catch (IOException e) {
                         //TODO: Log

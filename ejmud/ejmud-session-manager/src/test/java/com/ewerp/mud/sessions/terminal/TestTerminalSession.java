@@ -1,5 +1,12 @@
 package com.ewerp.mud.sessions.terminal;
 
+import com.ewerp.mud.commands.MockMessage;
+import com.ewerp.mud.plugins.MockPluginManager;
+import com.ewerp.mud.sessions.ISession;
+import com.ewerp.mud.sessions.MockSessionManager;
+import com.ewerp.mud.sessions.MockSessionManagerOne;
+import org.junit.Test;
+
 /**
  * Copyright 2012 Curtis Boyden
  * <p/>
@@ -16,4 +23,24 @@ package com.ewerp.mud.sessions.terminal;
  * limitations under the License.
  */
 public class TestTerminalSession {
+    @Test
+    public void testTerminalSession() {
+        /*
+        Attach a mock interpreter and make sure "terminal" input maps to expected ICommands and
+        that IMessages map to expected "terminal output
+         */
+
+        MockSocket socket = new MockSocket();
+        MockSessionManager sessionManager = new MockSessionManager();
+        MockPluginManager pluginManager = new MockPluginManager();
+
+        MockMessage message = new MockMessage();
+
+        ISession session = new TerminalSession(socket);
+        sessionManager.addSession(session);
+        session.setPluginManager(null);
+        session.setPluginManager(pluginManager);
+
+        session.processMessage(message);
+    }
 }
