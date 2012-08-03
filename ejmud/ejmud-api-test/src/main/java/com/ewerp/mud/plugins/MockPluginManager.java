@@ -45,8 +45,36 @@ public class MockPluginManager implements IPluginManager {
     }
 
     @Override
+    public List<IPlugin> getPlugins(String namespace, Class<?> clazz) throws IllegalArgumentException {
+        if(null == clazz) {
+            throw new IllegalArgumentException();
+        }
+
+        List<IPlugin> result = null;
+
+        List<IPlugin> pluginList = pluginMap.get(namespace);
+        if(null != pluginList) {
+            for(IPlugin p : pluginList) {
+                if((null != p.getInterfaces()) && (p.getInterfaces().contains(clazz))) {
+                    if(null == result) {
+                        result = new ArrayList<IPlugin>();
+                    }
+                        result.add(p);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    @Override
     public IPlugin getPlugin(Class<?> clazz) throws IllegalArgumentException {
         return getPlugin(MockPluginManager.DEFAULT_NAMESPACE, clazz);
+    }
+
+    @Override
+    public List<IPlugin> getPlugins(Class<?> clazz) throws IllegalArgumentException {
+        return getPlugins(MockPluginManager.DEFAULT_NAMESPACE, clazz);
     }
 
     @Override

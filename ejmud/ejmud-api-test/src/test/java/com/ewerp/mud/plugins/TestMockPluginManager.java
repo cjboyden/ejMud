@@ -43,6 +43,9 @@ public class TestMockPluginManager {
 
         Assert.assertNull(pluginManager.getPlugin(TestMockPluginManager.class));
         Assert.assertNull(pluginManager.getPlugin(NONDEFAULT_NAMESPACE, TestMockPluginManager.class));
+
+        Assert.assertNull(pluginManager.getPlugins(TestMockPluginManager.class));
+        Assert.assertNull(pluginManager.getPlugins(NONDEFAULT_NAMESPACE, TestMockPluginManager.class));
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -71,5 +74,19 @@ public class TestMockPluginManager {
         IPluginManager pluginManager = generatePluginManager();
 
         pluginManager.getPlugin(NONDEFAULT_NAMESPACE, null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testMockPluginManagerMultipleNoNamespaceNullClazz() {
+        IPluginManager pluginManager = generatePluginManager();
+
+        pluginManager.getPlugins(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testMockPluginManagerMultipleWithNamespaceNullClazz() {
+        IPluginManager pluginManager = generatePluginManager();
+
+        pluginManager.getPlugins(NONDEFAULT_NAMESPACE, null);
     }
 }

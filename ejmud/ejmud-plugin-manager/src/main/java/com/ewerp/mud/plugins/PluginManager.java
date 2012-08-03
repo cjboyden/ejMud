@@ -66,8 +66,43 @@ public class PluginManager implements IPluginManager, ILifecycleListener {
     }
 
     @Override
+    public List<IPlugin> getPlugins(String namespace, Class<?> clazz) throws IllegalArgumentException {
+        if(null == clazz) {
+            throw new IllegalArgumentException();
+        }
+
+        List<IPlugin> result = null;
+
+        // Set working namespace
+        String useNamespace = namespace;
+        if(null == namespace) {
+            useNamespace = PluginManager.defaultNamespace;
+        }
+
+        // If the namespace doesn't exist then the clazz cannot be found
+        if(namespaces.containsKey(useNamespace)) {
+            // Search each IPlugin in the namespace for clazz support
+            for(IPlugin p : namespaces.get(useNamespace)) {
+                if(null != p.getInterfaces() && p.getInterfaces().contains(clazz)) {
+                    if(null == result) {
+                        result = new ArrayList<IPlugin>();
+                    }
+                    result.add(p);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    @Override
     public IPlugin getPlugin(Class<?> clazz) throws IllegalArgumentException {
         return getPlugin(null, clazz);
+    }
+
+    @Override
+    public List<IPlugin> getPlugins(Class<?> clazz) throws IllegalArgumentException {
+        return getPlugins(null, clazz);
     }
 
     @Override

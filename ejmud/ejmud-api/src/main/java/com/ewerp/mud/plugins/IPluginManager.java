@@ -17,6 +17,8 @@ package com.ewerp.mud.plugins;
  */
 
 
+import java.util.List;
+
 /**
  * The {@link IPluginManager} is the heart of the ejMud. All services register
  * themselves as plugins with the {@link IPluginManager} and query the
@@ -55,6 +57,34 @@ public interface IPluginManager {
     public IPlugin getPlugin(String namespace, Class<?> clazz) throws IllegalArgumentException;
 
     /**
+     * Request a {@link java.util.List} of  {@link IPlugin} that implements the {@link Class} for a given
+     * namespace. The {@link IPlugin} provides functionality to the other
+     * {@link IPlugin}s.
+     *
+     * The first plugin to support a given interface that was added is the one that will be returned.
+     *
+     * @param namespace May be specified to prevent collision <br />
+     *                  <ul>
+     *                  <li>String : Any valid string can be used to represent a
+     *                  namespace</li>
+     *                  <li>null : Use the default namespace</li>
+     *                  </ul>
+     * @param clazz     The interface implemented by the {@link IPlugin} that is being
+     *                  requested <br />
+     *                  <ul>
+     *                  <li>{@link Class} : A valid {@link Class} representing the
+     *                  desired functionality to retrieve</li>
+     *                  <li>null : A null value will result in an
+     *                  {@link IllegalArgumentException}</li>
+     *                  </ul>
+     * @return A {@link java.util.List} of instances of {@link IPlugin} that implements the interface
+     *         requested by the clazz parameter <br />
+     *         Null if no matching {@link IPlugin} can be found
+     * @throws IllegalArgumentException Must be thrown if clazz is null
+     */
+    public List<IPlugin> getPlugins(String namespace, Class<?> clazz) throws IllegalArgumentException;
+
+    /**
      * Request an {@link IPlugin} that implements the {@link Class} using a
      * default namespace. The {@link IPlugin} provides functionality to the
      * other {@link IPlugin}s.
@@ -75,6 +105,27 @@ public interface IPluginManager {
      * @throws IllegalArgumentException Must be thrown if clazz is null
      */
     public IPlugin getPlugin(Class<?> clazz) throws IllegalArgumentException;
+
+    /**
+     * Request a {@link java.util.List} of {@link IPlugin} that implements the {@link Class} using a
+     * default namespace. The {@link IPlugin} provides functionality to the
+     * other {@link IPlugin}s.
+     *
+     *
+     * @param clazz The interface implemented by the {@link IPlugin} that is being
+     *              requested <br />
+     *              <ul>
+     *              <li>{@link Class} : A valid {@link Class} representing the
+     *              desired functionality to retrieve</li>
+     *              <li>null : A null value will result in an
+     *              {@link IllegalArgumentException}</li>
+     *              </ul>
+     * @return A {@link java.util.List} of instances of {@link IPlugin} that implements the interface
+     *         requested by the clazz parameter <br />
+     *         Null if no matching {@link IPlugin} can be found
+     * @throws IllegalArgumentException Must be thrown if clazz is null
+     */
+    public List<IPlugin> getPlugins(Class<?> clazz) throws IllegalArgumentException;
 
     /**
      * Register an {@link IPlugin} associated with a given namespace. The

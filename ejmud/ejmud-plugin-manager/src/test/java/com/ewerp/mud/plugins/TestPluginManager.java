@@ -65,6 +65,14 @@ public class TestPluginManager {
         Assert.assertSame(plugin1, pluginManager.getPlugin(MockPluginOne.class));
         Assert.assertNull(pluginManager.getPlugin(NONDEFAULT_NAMESPACE, MockPluginOne.class));
 
+        Assert.assertNotNull(pluginManager.getPlugins(MockPluginOne.class));
+        Assert.assertEquals(2, pluginManager.getPlugins(MockPluginOne.class).size());
+
+        Assert.assertNotNull(pluginManager.getPlugins(NONDEFAULT_NAMESPACE, MockPluginTwo.class));
+        Assert.assertEquals(2, pluginManager.getPlugins(NONDEFAULT_NAMESPACE, MockPluginTwo.class).size());
+
+        Assert.assertNull(pluginManager.getPlugins(NONDEFAULT_NAMESPACE, MockPluginOne.class));
+
         Assert.assertSame(plugin4, pluginManager.getPlugin(NONDEFAULT_NAMESPACE, MockPluginTwo.class));
 
         Assert.assertSame(plugin5, pluginManager.getPlugin(MockPluginTwo.class));
@@ -130,6 +138,20 @@ public class TestPluginManager {
         IPluginManager pluginManager = generatePluginManager();
 
         pluginManager.getPlugin(NONDEFAULT_NAMESPACE, null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testPluginManagerMultipleNoNamespaceNullClazz() {
+        IPluginManager pluginManager = generatePluginManager();
+
+        pluginManager.getPlugins(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testPluginManagerMultipleWithNamespaceNullClazz() {
+        IPluginManager pluginManager = generatePluginManager();
+
+        pluginManager.getPlugins(NONDEFAULT_NAMESPACE, null);
     }
 
 }
