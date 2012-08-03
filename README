@@ -10,3 +10,10 @@ ejmud-logging
 ejmud-plugin-manager
 ejmud-configuration
 ejmud-session-manager - Contains basic session implementations: telnet, html, cli, etc...
+
+TODOs:
+Add Logging to ALL modules
+Add IPluginManager usage in Unit Tests and remove superfluos methods that add items that could otherwise be requested
+    through the IPluginManager
+Clean up / add more / clarify API documentation
+Add persistence to ejmud-content-manager
