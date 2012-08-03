@@ -1,11 +1,14 @@
 package com.ewerp.mud.sessions.terminal;
 
+import com.ewerp.mud.commands.IMessage;
 import com.ewerp.mud.commands.MockMessage;
 import com.ewerp.mud.plugins.MockPluginManager;
 import com.ewerp.mud.sessions.ISession;
 import com.ewerp.mud.sessions.MockSessionManager;
-import com.ewerp.mud.sessions.MockSessionManagerOne;
+import junit.framework.Assert;
 import org.junit.Test;
+
+import java.io.IOException;
 
 /**
  * Copyright 2012 Curtis Boyden
@@ -22,25 +25,36 @@ import org.junit.Test;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-public class TestTerminalSession {
+public class TestSocketSession {
     @Test
-    public void testTerminalSession() {
-        /*
-        Attach a mock interpreter and make sure "terminal" input maps to expected ICommands and
-        that IMessages map to expected "terminal output
-         */
-
+    public void testTerminalSession() throws IOException {
         MockSocket socket = new MockSocket();
         MockSessionManager sessionManager = new MockSessionManager();
         MockPluginManager pluginManager = new MockPluginManager();
 
         MockMessage message = new MockMessage();
 
-        ISession session = new TerminalSession(socket);
+        ISession session = new SocketSession(socket) {
+
+            @Override
+            public void processMessage(IMessage message) {
+            }
+
+            @Override
+            public void run() {
+            }
+        };
+
         sessionManager.addSession(session);
         session.setPluginManager(null);
         session.setPluginManager(pluginManager);
 
+        session.processMessage(null);
         session.processMessage(message);
+
+        Assert.assertEquals(socket.getInputStream(), ((ITerminalSession)session).getInputStream());
+        Assert.assertEquals(socket.getOutputStream(), ((ITerminalSession)session).getOutputStream());
+
+        session.shutdown();
     }
 }

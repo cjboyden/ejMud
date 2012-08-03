@@ -98,6 +98,6 @@ public class TestSessionManager {
 
         Assert.assertNotNull(plugin.getInterfaces());
         Assert.assertEquals(1, plugin.getInterfaces().size());
-        Assert.assertEquals(ISessionFactory.class, plugin.getInterfaces().get(0));
+        Assert.assertEquals(ISessionManager.class, plugin.getInterfaces().get(0));
     }
 }

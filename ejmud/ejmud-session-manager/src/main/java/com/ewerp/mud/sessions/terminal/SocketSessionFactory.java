@@ -11,9 +11,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -31,7 +29,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-public class TerminalSessionFactory implements ISessionFactory, IPlugin, ILifecycleListener, Runnable {
+public abstract class SocketSessionFactory implements ISessionFactory, IPlugin, ILifecycleListener, Runnable {
     private ISessionManager sessionManager;
 
     protected ServerSocket serverSocket;
@@ -80,7 +78,7 @@ public class TerminalSessionFactory implements ISessionFactory, IPlugin, ILifecy
         }
 
         try {
-            String serverPort = getProperty(TerminalSessionFactory.FIELD_SERVER_PORT, SERVER_PORT);
+            String serverPort = getProperty(SocketSessionFactory.FIELD_SERVER_PORT, SERVER_PORT);
             serverSocket = new ServerSocket(Integer.parseInt(serverPort));
 
             serverThread = new Thread(this);
@@ -113,7 +111,7 @@ public class TerminalSessionFactory implements ISessionFactory, IPlugin, ILifecy
     }
 
     /**
-     * Listen for new socket connections and spin up a new TerminalSession for each
+     * Listen for new socket connections and spin up a new SocketSession for each
      */
     @Override
     public void run() {
@@ -125,7 +123,7 @@ public class TerminalSessionFactory implements ISessionFactory, IPlugin, ILifecy
                     try {
                         client = serverSocket.accept();
                         // TODO: Add a hook here that returns true if client should be accepted
-                        sessionManager.addSession(new TerminalSession(client));
+                        sessionManager.addSession(createSocketSession(client));
                     } catch (IOException e) {
                         //TODO: Log
                         e.printStackTrace();
@@ -155,4 +153,6 @@ public class TerminalSessionFactory implements ISessionFactory, IPlugin, ILifecy
     public List<Class<?>> getInterfaces() {
         return Arrays.asList(new Class<?>[]{ISessionFactory.class});
     }
+
+    protected abstract ITerminalSession createSocketSession(Socket socket);
 }

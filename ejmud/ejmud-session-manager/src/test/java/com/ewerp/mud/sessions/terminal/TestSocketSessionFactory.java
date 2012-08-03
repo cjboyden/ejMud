@@ -1,5 +1,6 @@
 package com.ewerp.mud.sessions.terminal;
 
+import com.ewerp.mud.commands.IMessage;
 import com.ewerp.mud.plugins.IPlugin;
 import com.ewerp.mud.plugins.MockPluginManager;
 import com.ewerp.mud.properties.MockProperties;
@@ -7,7 +8,6 @@ import com.ewerp.mud.sessions.ISessionFactory;
 import com.ewerp.mud.sessions.MockPropertiesOne;
 import com.ewerp.mud.sessions.MockSessionManagerOne;
 import junit.framework.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -31,9 +31,23 @@ import java.util.Map;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-public class TestTerminalSessionFactory {
+public class TestSocketSessionFactory {
     public static ISessionFactory generateSessionFactory() {
-        return new TerminalSessionFactory();
+        return new SocketSessionFactory() {
+
+            @Override
+            protected ITerminalSession createSocketSession(Socket socket) {
+                return new SocketSession(socket) {
+                    @Override
+                    public void processMessage(IMessage message) {
+                    }
+
+                    @Override
+                    public void run() {
+                    }
+                };
+            }
+        };
     }
 
     @Test
@@ -59,7 +73,7 @@ public class TestTerminalSessionFactory {
 
         Assert.assertNotNull(mockSessionManager.sessionList);
         Assert.assertEquals(1, mockSessionManager.sessionList.size());
-        Assert.assertTrue(mockSessionManager.sessionList.get(0) instanceof TerminalSession);
+        Assert.assertTrue(mockSessionManager.sessionList.get(0) instanceof SocketSession);
 
         mockSessionManager.stop();
     }
@@ -72,7 +86,7 @@ public class TestTerminalSessionFactory {
         MockPropertiesOne mockProperties = new MockPropertiesOne();
 
         Map<String, String> defaultProperties = new HashMap<String, String>();
-        defaultProperties.put(TerminalSessionFactory.FIELD_SERVER_PORT, "37208");
+        defaultProperties.put(SocketSessionFactory.FIELD_SERVER_PORT, "37208");
         mockProperties.namespaces.put(MockProperties.DEFAULT_NAMESPACE, defaultProperties);
 
         mockPluginManager.addPlugin(mockProperties);
@@ -98,7 +112,7 @@ public class TestTerminalSessionFactory {
 
         Assert.assertNotNull(mockSessionManager.sessionList);
         Assert.assertEquals(1, mockSessionManager.sessionList.size());
-        Assert.assertTrue(mockSessionManager.sessionList.get(0) instanceof TerminalSession);
+        Assert.assertTrue(mockSessionManager.sessionList.get(0) instanceof SocketSession);
 
         mockSessionManager.stop();
     }

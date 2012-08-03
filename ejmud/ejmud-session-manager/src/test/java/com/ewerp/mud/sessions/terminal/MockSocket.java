@@ -1,8 +1,6 @@
 package com.ewerp.mud.sessions.terminal;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.Socket;
 
 /**
@@ -21,33 +19,40 @@ import java.net.Socket;
  * limitations under the License.
  */
 public class MockSocket extends Socket {
+    public byte[] buffer = new byte[1024];
+
+    public InputStream inputStream = new ByteArrayInputStream(buffer);
+    public OutputStream outputStream = new ByteArrayOutputStream();
+
+    public boolean closed = false;
+
     @Override
     public InputStream getInputStream() throws IOException {
-        return super.getInputStream();
+        return inputStream;
     }
 
     @Override
     public OutputStream getOutputStream() throws IOException {
-        return super.getOutputStream();
+        return outputStream;
     }
 
     @Override
     public synchronized void close() throws IOException {
-        super.close();
+        closed = true;
     }
 
     @Override
     public boolean isClosed() {
-        return super.isClosed();
+        return closed;
     }
 
     @Override
     public boolean isInputShutdown() {
-        return super.isInputShutdown();
+        return closed;
     }
 
     @Override
     public boolean isOutputShutdown() {
-        return super.isOutputShutdown();
+        return closed;
     }
 }
