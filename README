@@ -5,7 +5,7 @@ Modules:
 ejmud-api - API
 ejmud-server - Game server / game specific objects & commands
 ejmud-command-engine
-ejmud-content-repository
+ejmud-content-manager
 ejmud-logging
 ejmud-plugin-manager
 ejmud-configuration

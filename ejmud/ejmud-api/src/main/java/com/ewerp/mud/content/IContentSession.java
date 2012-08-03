@@ -39,6 +39,9 @@ public interface IContentSession {
 
     /**
      * Fetch an {@link IEntity} with a matching id
+     *
+     * The fetched entity may not be the exact same object but will have the same properties as the
+     * original at the time it was fetched
      * @param id
      * @return {@link IEntity} with a matching id, or null if none are found
      */
@@ -55,6 +58,7 @@ public interface IContentSession {
 
     /**
      * Remove an existing {@link IEntity}. If the object does not exist nothing happens.
+     * If {@link IEntity} is null, nothing will happen
      * @param object {@link IEntity} to remove
      */
     public void delete(IEntity object);
