@@ -34,7 +34,7 @@ public class Properties implements IPlugin, IProperties {
         return INSTANCE;
     }
 
-    private Properties() {
+    protected Properties() {
     }
 
     @Override

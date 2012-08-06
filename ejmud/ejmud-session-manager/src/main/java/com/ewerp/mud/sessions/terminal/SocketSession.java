@@ -102,6 +102,29 @@ public abstract class SocketSession implements ITerminalSession, Runnable {
         return result;
     }
 
+    @Override
+    public boolean isInputShutdown() {
+        boolean result = true;
+
+        if(!socket.isClosed() && !socket.isInputShutdown()) {
+            result = false;
+        }
+
+        return result;
+    }
+
+    @Override
+    public boolean isOutputShutdown() {
+        boolean result = true;
+
+        if(!socket.isClosed() && !socket.isOutputShutdown()) {
+            result = false;
+        }
+
+        return result;
+    }
+
+
     public abstract void processMessage(IMessage message);
 
     public abstract void run();

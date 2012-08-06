@@ -37,4 +37,16 @@ public interface ITerminalSession extends ISession {
      * @return Valid OutputStream or null if not connected
      */
     OutputStream getOutputStream();
+
+    /**
+     * Is the inputstream still valid for writing to? (Is the socket open and the input stream available?)
+     * @return
+     */
+    boolean isInputShutdown();
+
+    /**
+     * Is the outputstream still valid for writing to? (Is the socket open and the output stream available?)
+     * @return
+     */
+    boolean isOutputShutdown();
 }

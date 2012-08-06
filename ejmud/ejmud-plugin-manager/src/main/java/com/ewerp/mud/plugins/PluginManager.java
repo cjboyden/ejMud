@@ -30,11 +30,11 @@ public class PluginManager implements IPluginManager, ILifecycleListener {
      * Use the getInstance() method to gain access to the {@link PluginManager}
      * @return An instance of the {@link PluginManager}
      */
-    public static final PluginManager getInstance() {
+    public static PluginManager getInstance() {
         return INSTANCE;
     }
 
-    private PluginManager() {
+    protected PluginManager() {
     }
 
     @Override

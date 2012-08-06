@@ -1,5 +1,11 @@
 package com.ewerp.mud.logging;
 
+import com.ewerp.mud.plugins.IPlugin;
+import com.ewerp.mud.plugins.IPluginManager;
+
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Copyright 2012 Curtis Boyden
  * <p/>
@@ -15,7 +21,9 @@ package com.ewerp.mud.logging;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-public class Log implements ILog {
+public class Log implements IPlugin, ILog {
+    protected IPluginManager pluginManager;
+
     @Override
     public void logDebug(String message) {
         logDebug(message, null);
@@ -73,5 +81,15 @@ public class Log implements ILog {
                 e.printStackTrace(System.out);
             }
         }
+    }
+
+    @Override
+    public void registerPluginManager(IPluginManager pluginManager) {
+        this.pluginManager = pluginManager;
+    }
+
+    @Override
+    public List<Class<?>> getInterfaces() {
+        return Arrays.asList(new Class<?>[] {ILog.class});
     }
 }
