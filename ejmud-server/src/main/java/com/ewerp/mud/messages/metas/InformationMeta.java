@@ -1,6 +1,6 @@
 package com.ewerp.mud.messages.metas;
 
-import com.ewerp.mud.commands.IMessageMeta;
+import com.ewerp.engine.commands.IMessageMeta;
 
 /**
  * Copyright 2012 Curtis Boyden

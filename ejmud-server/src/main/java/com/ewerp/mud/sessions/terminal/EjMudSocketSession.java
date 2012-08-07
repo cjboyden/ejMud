@@ -1,7 +1,8 @@
 package com.ewerp.mud.sessions.terminal;
 
-import com.ewerp.mud.commands.IMessage;
-import com.ewerp.mud.plugins.IPluginManager;
+import com.ewerp.engine.commands.IMessage;
+import com.ewerp.engine.plugins.IPluginManager;
+import com.ewerp.engine.sessions.terminal.SocketSession;
 
 import java.net.Socket;
 

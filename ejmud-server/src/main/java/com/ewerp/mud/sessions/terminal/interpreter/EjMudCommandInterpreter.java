@@ -1,13 +1,13 @@
 package com.ewerp.mud.sessions.terminal.interpreter;
 
-import com.ewerp.mud.commands.ICommand;
-import com.ewerp.mud.commands.IMessage;
-import com.ewerp.mud.commands.Message;
+import com.ewerp.engine.commands.ICommand;
+import com.ewerp.engine.commands.IMessage;
+import com.ewerp.engine.commands.Message;
+import com.ewerp.engine.plugins.IPlugin;
+import com.ewerp.engine.plugins.IPluginManager;
+import com.ewerp.engine.sessions.ISession;
 import com.ewerp.mud.commands.NullCommand;
 import com.ewerp.mud.messages.metas.InformationMeta;
-import com.ewerp.mud.plugins.IPlugin;
-import com.ewerp.mud.plugins.IPluginManager;
-import com.ewerp.mud.sessions.ISession;
 
 import java.util.Arrays;
 import java.util.List;

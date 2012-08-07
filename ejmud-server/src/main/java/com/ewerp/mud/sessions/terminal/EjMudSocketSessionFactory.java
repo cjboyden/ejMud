@@ -1,5 +1,8 @@
 package com.ewerp.mud.sessions.terminal;
 
+import com.ewerp.engine.sessions.terminal.ITerminalSession;
+import com.ewerp.engine.sessions.terminal.SocketSessionFactory;
+
 import java.net.Socket;
 
 /**

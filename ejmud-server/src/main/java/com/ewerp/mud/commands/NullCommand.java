@@ -1,5 +1,7 @@
 package com.ewerp.mud.commands;
 
+import com.ewerp.engine.commands.ICommand;
+
 /**
  * Copyright 2012 Curtis Boyden
  * <p/>

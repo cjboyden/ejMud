@@ -1,8 +1,8 @@
 package com.ewerp.mud;
 
 import com.ewerp.mud.plugins.EjMudPluginManager;
-import com.ewerp.mud.plugins.ILifecycleListener;
-import com.ewerp.mud.plugins.IPluginManager;
+import com.ewerp.engine.plugins.ILifecycleListener;
+import com.ewerp.engine.plugins.IPluginManager;
 
 /**
  * Copyright 2012 Curtis Boyden

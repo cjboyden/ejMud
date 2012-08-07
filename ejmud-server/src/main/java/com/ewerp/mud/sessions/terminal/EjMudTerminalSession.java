@@ -1,16 +1,16 @@
 package com.ewerp.mud.sessions.terminal;
 
-import com.ewerp.mud.EjMudException;
-import com.ewerp.mud.commands.ICommand;
-import com.ewerp.mud.commands.ICommandEngine;
-import com.ewerp.mud.commands.IMessage;
-import com.ewerp.mud.commands.IMessageMeta;
+import com.ewerp.engine.EjAppException;
+import com.ewerp.engine.commands.ICommandEngine;
+import com.ewerp.engine.commands.IMessage;
+import com.ewerp.engine.commands.IMessageMeta;
+import com.ewerp.engine.plugins.IPluginManager;
 import com.ewerp.mud.messages.metas.InformationMeta;
-import com.ewerp.mud.plugins.IPluginManager;
 import com.ewerp.mud.sessions.terminal.interpreter.IEjMudCommandInterpreter;
 
-import java.io.*;
-import java.net.Socket;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  * Copyright 2012 Curtis Boyden
@@ -54,7 +54,7 @@ public class EjMudTerminalSession {
                     if(null != commandInterpreter && null != commandEngine) {
                         try {
                             commandEngine.pushCommand(commandInterpreter.convertToCommand(command, session));
-                        } catch(EjMudException e) {
+                        } catch(EjAppException e) {
                             //TODO: Log
                             e.printStackTrace();
                         }

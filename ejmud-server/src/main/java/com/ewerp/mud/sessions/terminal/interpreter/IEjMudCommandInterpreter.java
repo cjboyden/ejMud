@@ -1,7 +1,7 @@
 package com.ewerp.mud.sessions.terminal.interpreter;
 
-import com.ewerp.mud.commands.ICommand;
-import com.ewerp.mud.sessions.ISession;
+import com.ewerp.engine.commands.ICommand;
+import com.ewerp.engine.sessions.ISession;
 
 /**
  * Copyright 2012 Curtis Boyden

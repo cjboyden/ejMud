@@ -1,10 +1,11 @@
 package com.ewerp.mud.plugins;
 
-import com.ewerp.mud.commands.CommandEngine;
-import com.ewerp.mud.content.ContentSessionFactory;
-import com.ewerp.mud.logging.Log;
-import com.ewerp.mud.properties.Properties;
-import com.ewerp.mud.sessions.SessionManager;
+import com.ewerp.engine.commands.CommandEngine;
+import com.ewerp.engine.content.ContentSessionFactory;
+import com.ewerp.engine.logging.Log;
+import com.ewerp.engine.plugins.PluginManager;
+import com.ewerp.engine.properties.Properties;
+import com.ewerp.engine.sessions.SessionManager;
 import com.ewerp.mud.sessions.terminal.EjMudSocketSessionFactory;
 import com.ewerp.mud.sessions.terminal.interpreter.EjMudCommandInterpreter;
 

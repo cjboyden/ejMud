@@ -15,50 +15,50 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.ewerp.mud</groupId>
-            <artifactId>ejmud-api</artifactId>
+            <groupId>com.ewerp.engine</groupId>
+            <artifactId>ej-app-engine-api</artifactId>
             <version>0.1</version>
         </dependency>
 
         <dependency>
-            <groupId>com.ewerp.mud</groupId>
-            <artifactId>ejmud-configuration</artifactId>
+            <groupId>com.ewerp.engine</groupId>
+            <artifactId>ej-app-engine-configuration</artifactId>
             <version>0.1</version>
         </dependency>
 
         <dependency>
-            <groupId>com.ewerp.mud</groupId>
-            <artifactId>ejmud-plugin-manager</artifactId>
+            <groupId>com.ewerp.engine</groupId>
+            <artifactId>ej-app-engine-plugin-manager</artifactId>
             <version>0.1</version>
         </dependency>
 
         <dependency>
-            <groupId>com.ewerp.mud</groupId>
-            <artifactId>ejmud-command-engine</artifactId>
+            <groupId>com.ewerp.engine</groupId>
+            <artifactId>ej-app-engine-command-engine</artifactId>
             <version>0.1</version>
         </dependency>
 
         <dependency>
-            <groupId>com.ewerp.mud</groupId>
-            <artifactId>ejmud-logging</artifactId>
+            <groupId>com.ewerp.engine</groupId>
+            <artifactId>ej-app-engine-logging</artifactId>
             <version>0.1</version>
         </dependency>
 
         <dependency>
-            <groupId>com.ewerp.mud</groupId>
-            <artifactId>ejmud-content-manager</artifactId>
+            <groupId>com.ewerp.engine</groupId>
+            <artifactId>ej-app-engine-content-manager</artifactId>
             <version>0.1</version>
         </dependency>
 
         <dependency>
-            <groupId>com.ewerp.mud</groupId>
-            <artifactId>ejmud-session-manager</artifactId>
+            <groupId>com.ewerp.engine</groupId>
+            <artifactId>ej-app-engine-session-manager</artifactId>
             <version>0.1</version>
         </dependency>
 
         <dependency>
-            <groupId>com.ewerp.mud</groupId>
-            <artifactId>ejmud-api-test</artifactId>
+            <groupId>com.ewerp.engine</groupId>
+            <artifactId>ej-app-engine-api-test</artifactId>
             <version>0.1</version>
             <scope>test</scope>
         </dependency>
