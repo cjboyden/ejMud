@@ -2,9 +2,10 @@ package com.ewerp.mud.sessions.terminal;
 
 import com.ewerp.engine.commands.IMessage;
 import com.ewerp.engine.plugins.IPluginManager;
-import com.ewerp.engine.sessions.terminal.SocketSession;
+import com.ewerp.engine.sessions.terminal.ConsoleSession;
 
-import java.net.Socket;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 /**
  * Copyright 2012 Curtis Boyden
@@ -21,9 +22,10 @@ import java.net.Socket;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-public class EjMudSocketSession extends SocketSession implements IEjMudTerminalSession{
-    public EjMudSocketSession(Socket socket) {
-        super(socket);
+public class EjMudConsoleSession extends ConsoleSession implements IEjMudTerminalSession {
+
+    public EjMudConsoleSession(InputStream inputStream, OutputStream outputStream) {
+        super(inputStream, outputStream);
     }
 
     @Override
