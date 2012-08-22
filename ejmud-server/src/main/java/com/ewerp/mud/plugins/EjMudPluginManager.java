@@ -6,6 +6,7 @@ import com.ewerp.engine.logging.Log;
 import com.ewerp.engine.plugins.PluginManager;
 import com.ewerp.engine.properties.Properties;
 import com.ewerp.engine.sessions.SessionManager;
+import com.ewerp.mud.sessions.terminal.EjMudConsoleSessionFactory;
 import com.ewerp.mud.sessions.terminal.EjMudSocketSessionFactory;
 import com.ewerp.mud.sessions.terminal.interpreter.EjMudCommandInterpreter;
 
@@ -49,6 +50,7 @@ public class EjMudPluginManager extends PluginManager {
 
         SessionManager sessionManager = new SessionManager();
         sessionManager.addSessionFactory(new EjMudSocketSessionFactory());
+        sessionManager.addSessionFactory(new EjMudConsoleSessionFactory());
 
         addPlugin(sessionManager);
 
