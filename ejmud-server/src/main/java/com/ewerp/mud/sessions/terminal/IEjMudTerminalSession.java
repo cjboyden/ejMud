@@ -2,6 +2,7 @@ package com.ewerp.mud.sessions.terminal;
 
 import com.ewerp.engine.sessions.terminal.ITerminalSession;
 import com.ewerp.engine.plugins.IPluginManager;
+import com.ewerp.mud.sessions.terminal.state.IEjMudTerminalState;
 
 /**
  * Copyright 2012 Curtis Boyden
@@ -20,4 +21,6 @@ import com.ewerp.engine.plugins.IPluginManager;
  */
 public interface IEjMudTerminalSession extends ITerminalSession {
     IPluginManager getPluginManager();
+
+    IEjMudTerminalState getCurrentState();
 }

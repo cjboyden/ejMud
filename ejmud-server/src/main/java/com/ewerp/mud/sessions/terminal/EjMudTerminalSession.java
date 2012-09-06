@@ -33,6 +33,25 @@ public class EjMudTerminalSession {
     public static void run(IEjMudTerminalSession session) {
         if(null != session) {
             BufferedReader reader = null;
+
+            if(null != session.getInputStream()) {
+                reader = new BufferedReader(new InputStreamReader(session.getInputStream()));
+            }
+
+            while(null != reader && !session.isInputShutdown() && null != session.getCurrentState()) {
+                try {
+                    session.getCurrentState().processLine(reader.readLine());
+                } catch (IOException e) {
+                    //TODO: Log
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static void runOld_withCommandInterpreter(IEjMudTerminalSession session) {
+        if(null != session) {
+            BufferedReader reader = null;
             String command = null;
             IPluginManager pluginManager = session.getPluginManager();
 
@@ -50,7 +69,6 @@ public class EjMudTerminalSession {
             while(null != reader && !session.isInputShutdown()) {
                 try {
                     command = reader.readLine();
-                    System.out.println(command);
 
                     if(null != commandInterpreter && null != commandEngine) {
                         try {
@@ -73,16 +91,19 @@ public class EjMudTerminalSession {
     }
 
     public static void processMessage(IEjMudTerminalSession session, IMessage message) {
+        if(null != message) {
+            for(IMessageMeta messageMeta : message.getMeta()) {
+                if(messageMeta instanceof InformationMeta) {
+                    writeString(session, ((InformationMeta)messageMeta).getInformationString());
+                }
+            }
+        }
+    }
+
+    public static void writeString(IEjMudTerminalSession session, String message) {
         try {
             if(null != session && null != session.getOutputStream() && null != message) {
-                for(IMessageMeta messageMeta : message.getMeta()) {
-                    if(messageMeta instanceof InformationMeta) {
-                        String output = ((InformationMeta)messageMeta).getInformationString();
-                        if(null != output) {
-                            session.getOutputStream().write(output.getBytes());
-                        }
-                    }
-                }
+                session.getOutputStream().write(message.getBytes());
             }
         } catch (IOException e) {
             //TODO: Log

@@ -3,8 +3,13 @@ package com.ewerp.mud.sessions.terminal;
 import com.ewerp.engine.commands.IMessage;
 import com.ewerp.engine.plugins.IPluginManager;
 import com.ewerp.engine.sessions.terminal.SocketSession;
+import com.ewerp.mud.sessions.terminal.state.EjMudLogin;
+import com.ewerp.mud.sessions.terminal.state.IEjMudTerminalState;
 
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
 
 /**
  * Copyright 2012 Curtis Boyden
@@ -21,7 +26,8 @@ import java.net.Socket;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-public class EjMudSocketSession extends SocketSession implements IEjMudTerminalSession{
+public class EjMudSocketSession extends SocketSession implements IEjMudTerminalSession {
+    private Stack<IEjMudTerminalState> stateStack = new Stack<IEjMudTerminalState>();
 
     public EjMudSocketSession(Socket socket) {
         super(socket);
@@ -38,7 +44,24 @@ public class EjMudSocketSession extends SocketSession implements IEjMudTerminalS
     }
 
     @Override
+    public void setPluginManager(IPluginManager pluginManager) {
+        super.setPluginManager(pluginManager);
+
+        EjMudLogin loginState = new EjMudLogin();
+        loginState.setSession(this);
+        loginState.setPluginManager(pluginManager);
+        stateStack.push(loginState);
+
+        loginState.start();
+    }
+
+    @Override
     public IPluginManager getPluginManager() {
         return super.getPluginManager();
+    }
+
+    @Override
+    public IEjMudTerminalState getCurrentState() {
+        return stateStack.peek();
     }
 }

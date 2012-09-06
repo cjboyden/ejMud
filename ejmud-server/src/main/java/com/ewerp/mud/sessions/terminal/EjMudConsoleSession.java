@@ -3,6 +3,7 @@ package com.ewerp.mud.sessions.terminal;
 import com.ewerp.engine.commands.IMessage;
 import com.ewerp.engine.plugins.IPluginManager;
 import com.ewerp.engine.sessions.terminal.ConsoleSession;
+import com.ewerp.mud.sessions.terminal.state.IEjMudTerminalState;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -41,5 +42,10 @@ public class EjMudConsoleSession extends ConsoleSession implements IEjMudTermina
     @Override
     public IPluginManager getPluginManager() {
         return super.getPluginManager();
+    }
+
+    @Override
+    public IEjMudTerminalState getCurrentState() {
+        throw new UnsupportedOperationException();
     }
 }
