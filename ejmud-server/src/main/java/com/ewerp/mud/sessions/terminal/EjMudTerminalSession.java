@@ -1,6 +1,7 @@
 package com.ewerp.mud.sessions.terminal;
 
 import com.ewerp.engine.EjAppException;
+import com.ewerp.engine.commands.ICommand;
 import com.ewerp.engine.commands.ICommandEngine;
 import com.ewerp.engine.commands.IMessage;
 import com.ewerp.engine.commands.IMessageMeta;
@@ -53,7 +54,10 @@ public class EjMudTerminalSession {
 
                     if(null != commandInterpreter && null != commandEngine) {
                         try {
-                            commandEngine.pushCommand(commandInterpreter.convertToCommand(command, session));
+                            ICommand cmd = commandInterpreter.convertToCommand(command, session)     ;
+                            if(null != cmd) {
+                                commandEngine.pushCommand(cmd);
+                            }
                         } catch(EjAppException e) {
                             //TODO: Log
                             e.printStackTrace();

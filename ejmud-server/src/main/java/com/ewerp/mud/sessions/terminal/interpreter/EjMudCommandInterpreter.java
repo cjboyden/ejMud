@@ -6,6 +6,8 @@ import com.ewerp.engine.commands.Message;
 import com.ewerp.engine.plugins.IPlugin;
 import com.ewerp.engine.plugins.IPluginManager;
 import com.ewerp.engine.sessions.ISession;
+import com.ewerp.mud.commands.CreateRoomCommand;
+import com.ewerp.mud.commands.IEjMudCommand;
 import com.ewerp.mud.commands.NullCommand;
 import com.ewerp.mud.messages.metas.InformationMeta;
 
@@ -37,12 +39,20 @@ public class EjMudCommandInterpreter implements IPlugin, IEjMudCommandInterprete
 
     @Override
     public ICommand convertToCommand(String command, ISession session) {
-        if(null != session) {
-            IMessage msg = new Message();
-            msg.addMeta(new InformationMeta("Thank you\r\n"));
-            session.processMessage(msg);
+        IEjMudCommand result = null;
+
+        if("exit".equals(command)) {
+            // TODO: Shutdown gracefully
+            System.exit(0);
         }
-        return new NullCommand();
+
+        if(null != command && command.startsWith("create room")) {
+            result = new CreateRoomCommand();
+            result.setPluginManager(pluginManager);
+            result.setSession(session);
+        }
+
+        return result;
     }
 
 
